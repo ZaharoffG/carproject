@@ -1,0 +1,40 @@
+<html>
+
+<head th:replace="~{header::header}"></head>
+
+<body>
+    <div class="container">
+    <form action="#" th:action="@{/{id}/modelo/saveModelo(id=${fabricante_id})}" method="post" th:object="${modelo}">
+        <legend>Criar uma novo modelo</legend>
+        <div class="mb-3">
+            <label class="form-label">Nome do modelo</label>
+            <input class="form-control" type="text" id="name" th:field="*{name}" name="name" />
+            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="form-error"></span>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="tipo">Tipo do Modelo</label>
+            <select class="form-control" id="tipo" th:field="*{tipo}">
+                <option value="" disabled selected>Selecione o tipo de veículo</option>
+                <option value="CARRO" th:selected="${modelo.tipo == 'CARRO'}">Carro</option>
+                <option value="MOTO" th:selected="${modelo.tipo == 'MOTO'}">Moto</option>
+            </select>
+            <div class="invalid-feedback" th:if="${#fields.hasErrors('tipo')}">
+                <span th:errors="*{tipo}">O tipo do veículo é obrigatório.</span>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Descrição do modelo</label>
+            <input class="form-control" type="text" id="descricao" name="descricao" th:field="*{descricao}" />
+            <span th:if="${#fields.hasErrors('descricao')}" th:errors="*{descricao}" class="form-error"></span>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">URL da imagem do modelo</label>
+            <input class="form-control" type="text" id="imagem" name="imagem" th:field="*{imagem}" />
+            <span th:if="${#fields.hasErrors('imagem')}" th:errors="*{imagem}" class="form-error"></span>
+        </div>
+        <input type="submit" value="Criar Modelo" class="btn btn-primary">
+    </form>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<html>
+
+<head th:replace="~{header::header}"></head>
+
+<body>
+    <h1>Listagem de Modelos</h1>
+    <a th:href="@{/{fabId}/modelo/create (fabId=${fabricante_id})}">Criar Modelo</a>
+    <a th:href="@{/fabricante}">Fabricantes</a>
+    <br />
+    <br />
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <td>Id</td>
+                <td>Nome</td>
+                <td>Tipo</td>
+                <td>Data de Criação</td>
+                <td>Descrição</td>
+                <td>Imagem</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="modelo : ${listaModelos}">
+                <td th:text="${modelo.id}"></td>
+                <td th:text="${modelo.name}"></td>
+                <td th:text="${modelo.tipo}"></td>
+                <td th:text="${modelo.createdDate}"></td>
+                <td th:text="${modelo.descricao}"></td>
+                <td><img th:src="@{${modelo.imagem}}" class="img-thumbnail" alt="Imagem do Modelo"></td>
+                <td>
+                    <a th:href="@{/{fabricante_id}/modelo/{id}/editar (fabricante_id=${fabricante_id}, id=${modelo.id})}">Editar</a>
+                    <a th:href="@{/{fabricante_id}/modelo/{id}/deleteModelo (fabricante_id=${fabricante_id}, id=${modelo.id})}">Excluir</a>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>

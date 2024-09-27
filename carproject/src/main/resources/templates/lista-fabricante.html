@@ -1,0 +1,32 @@
+<html>
+
+<head th:replace="~{header::header}"></head>
+
+<body>
+    <h1>Listagem de Fabricantes</h1>
+    <a href="/fabricante/create">Criar Fabricante</a>
+    <br />
+    <br />
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <td>Id</td>
+                <td>Nome</td>
+                <td>Data Criação</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="fabricante : ${listaFabricante}">
+                <td th:text="${fabricante.id}"></td>
+                <td th:text="${fabricante.name}"></td>
+                <td>
+                    <a th:href="@{/fabricante/edit/{id}(id=${fabricante.id})}">Editar</a>
+                    <a th:href="@{/fabricante/delete/{id}(id=${fabricante.id})}">Excluir</a>
+                    <a th:href="@{/{id}/modelo (id=${fabricante.id})}">Modelos</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>
